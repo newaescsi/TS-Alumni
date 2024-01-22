@@ -24,48 +24,39 @@
     }
 }
 ```
-CREATE TABLE User (
-	UserID INT PRIMARY KEY NOT NULL,
-	RealName VARCHAR(255) NOT NULL,
-	EmailAddress VARCHAR(255) NOT NULL UNIQUE,
-	BirthDate INT,
-	Course VARCHAR(255),
-	AuthProvider VARCHAR(255),
-	ProfileImg VARCHAR(255)
-);
-
-CREATE TABLE Post (
-	PostID INT PRIMARY KEY NOT NULL,
-	UserID INT,
-	TimeAndDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	Content VARCHAR (1000),
-	MediaLink VARCHAR(255),
-	FOREIGN KEY (UserID) REFERENCES User(UserID)
-);
-
-CREATE TABLE Comment (
-	CommentID INT PRIMARY KEY NOT NULL,
-	UserID INT,
-	PostID INT,
-	TimeAndDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	Content VARCHAR (1000),
-	FOREIGN KEY (UserID) REFERENCES User(UserID),
-	FOREIGN KEY (PostID) REFERENCES Post(PostID
+```json
+{
+    "comment": {
+        "id": "uuid",
+        "user_id": "",
+        "post_id": "",
+        "datetime": "",
+        "content": ""
+    }
+}
+```
+```json
+{
+    "sessionData": {
+        "id": "uuid v4",
+        "name": "Max Mustermann"
+    }
+}
+```
 #### Userprofil
 #### Post
 #### session Data
 ### Login
 #### Frontend /google/login - newAcc
 ```json
-// GET | api.lambda/google/login?token=xxxxx enthält Token in req.params
+// POST | api.lambda/google/login enthält Token
 // Antwort:
 {
     "body": {
         "isNewUser": true,
         "sessionData": {
             "id": "uuid v4",
-            "token": "xxxxx",
-            "name": "Max Mustermann",
+            "name": "Max Mustermann"
         }
     }
 }
@@ -83,7 +74,8 @@ CREATE TABLE Comment (
 }
 // Response:
 {
-    "status": "ok"
+    "status": "ok",
+    "message": "Profile updated"
 }
 ```
 
@@ -160,12 +152,13 @@ CREATE TABLE Comment (
 }
 // Response:
 {
-    "status": "ok"
+    "status": "ok",
+    "message": "Post added"
 }
 ```
 #### getPostsByUserId - Hole alle Posts eines User
 ```json
-// POST | api.lambda/getPostById?post_id=xxxx
+// POST | api.lambda/getPostsByUserId
 // Request:
 {
     "sessionData": {},
@@ -176,16 +169,16 @@ CREATE TABLE Comment (
 // Response:
 {
     "status": "ok",
-    "posts": [
+    "filtered_posts": [
         {
-            "id": "uuid",
+            "id": "post-uuid",
             "user_id": "",
             "datetime": "",
             "content": "",
             "media_link": ""
         },
         {
-            "id": "uuid",
+            "id": "post-uuid",
             "user_id": "",
             "datetime": "",
             "content": "",
@@ -194,14 +187,88 @@ CREATE TABLE Comment (
     ]
 }
 ```
-#### getAllPosts
-#### deletePostById
-#### addComment
-#### deleteComment
-#### LikePost
-
+#### getAllPosts -- Hole alle Posts für den angemeldeten Nutzer
 ```json
+// POST | api.lambda/getAllPosts
+// Request:
+{
+    "sessionData": {}
+}
+// Response:
+{
+    "status": "ok",
+    "message": "Posts fetched",
+    "posts": [
+        {
+            "id": "post-id",
+            "user_id": "1236789",
+            "datetime": "",
+            "content": "",
+            "media_link": ""
+        },
+        {
+            "id": "post-id",
+            "user_id": "1236789",
+            "datetime": "",
+            "content": "",
+            "media_link": ""
+        }
+    ]
+}
 ```
+#### deletePostById
+```json
+// DELETE | api.lambda/deletePostById
+// Request:
+{
+    "sessionData": {},
+    "body": {
+        "post_id": "post-id"
+    }
+}
+// Response:
+{
+    "status": "ok",
+    "message": "Post deleted"
+}
+```
+#### addComment
+```json
+// POST | api.lambda/addComment
+// Request:
+{
+    "sessionData": {},
+    "comment": {
+        "id": "uuid",
+        "user_id": "",
+        "post_id": "",
+        "datetime": "",
+        "content": ""
+    }
+}
+// Response:
+{
+    "status": "ok",
+    "message": "Comment added"
+}
+```
+#### deleteCommentById
+```json
+// DELETE | api.lambda/deleteCommentById
+// Request:
+{
+    "sessionData": {},
+    "body": {
+        "comment_id": "comment-id"
+    }
+}
+// Response:
+{
+    "status": "ok",
+    "message": "Comment deleted"
+}
+```
+
 
 # Benötige Routen
 - Frontend sendet Token an Backend & erhält: 
