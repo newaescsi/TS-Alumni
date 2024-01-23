@@ -12,7 +12,6 @@
         "Course": "MIB",
         "AuthProvider": "google",
         "ProfileImg": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-        "meta": {""}
     }
 }
 ```
@@ -25,7 +24,6 @@
         "datetime": "",
         "content": "",
         "media_link": "",
-        "like_id": {""},
     }
 }
 ```
@@ -38,7 +36,16 @@
         "post_id": "",
         "datetime": "",
         "content": "",
-        "like_id": { "likes": "[userID, userID2, userID3]"}
+    }
+}
+```
+#### likes - // junction table - SQL Join w User-Post
+```json
+{
+    "likes": {
+        "post_id": "",
+        "comment_id": "",
+        "user_id": ""
     }
 }
 ```
@@ -52,6 +59,7 @@
 }
 ```
 
+# API-Endpunkte TS-Alumni
 ## Login
 #### Frontend /google/login - newAcc
 ```json
@@ -85,7 +93,6 @@
 }
 ```
 
-# API-Endpunkte TS-Alumni
 #### addUser === api.lambda/google/login?token=xxxx
 ```json
 //Response:
