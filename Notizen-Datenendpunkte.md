@@ -1,8 +1,9 @@
 # Datenschnittpunkte
 ## Generelle Datenstrukturen
+#### userProfil
 ```json
 {
-    "User": {
+    "user": {
         "UserID": "uuid v4",
         "RealName": "Max Mustermann",
         "EmailAddress": "kjdf",
@@ -13,6 +14,7 @@
     }
 }
 ```
+#### post
 ```json
 {
     "post": {
@@ -24,6 +26,7 @@
     }
 }
 ```
+#### comment
 ```json
 {
     "comment": {
@@ -35,6 +38,7 @@
     }
 }
 ```
+#### sessionData
 ```json
 {
     "sessionData": {
@@ -43,10 +47,8 @@
     }
 }
 ```
-#### Userprofil
-#### Post
-#### session Data
-### Login
+
+## Login
 #### Frontend /google/login - newAcc
 ```json
 // POST | api.lambda/google/login enthält Token
