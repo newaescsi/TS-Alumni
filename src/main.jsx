@@ -7,6 +7,7 @@ import Root from './routes/root';
 import LoginGoogle from './routes/logingoogle';
 import AccountErstellung from './routes/newacc';
 import NewsFeed from './routes/newsfeed';
+import Profile from './routes/profile';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/newsfeed",
     element: <NewsFeed />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
