@@ -5,12 +5,14 @@
 {
     "user": {
         "UserID": "uuid v4",
+        "GoogleID": "123456789",
         "RealName": "Max Mustermann",
         "EmailAddress": "kjdf",
         "BirthDate": "03.03.3333",
         "Course": "MIB",
         "AuthProvider": "google",
-        "ProfileImg": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        "ProfileImg": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+        "meta": {""}
     }
 }
 ```
@@ -18,11 +20,12 @@
 ```json
 {
     "post": {
-        "id": "uuid",
+        "post_id": "uuid",
         "user_id": "",
         "datetime": "",
         "content": "",
-        "media_link": ""
+        "media_link": "",
+        "like_id": {""},
     }
 }
 ```
@@ -30,11 +33,12 @@
 ```json
 {
     "comment": {
-        "id": "uuid",
+        "comment_id": "uuid",
         "user_id": "",
         "post_id": "",
         "datetime": "",
-        "content": ""
+        "content": "",
+        "like_id": { "likes": "[userID, userID2, userID3]"}
     }
 }
 ```
@@ -104,6 +108,7 @@
     "sessionData": {},
     "body": {
         "user": {
+            "user_id": "adsf",
             "google_id": "123456789",
             "name": "Max Mustermann",
             "email": "",
@@ -125,7 +130,7 @@
 {
     "sessionData": {},
     "body": {
-        "google_id": "uuid v4"
+        "user_id": "uuid v4"
     }
 }
 // Response:
@@ -149,7 +154,8 @@
         "user_id": "",
         "datetime": "",
         "content": "",
-        "media_link": ""
+        "media_link": "",
+        "likes": {}
     }
 }
 // Response:
@@ -177,14 +183,16 @@
             "user_id": "",
             "datetime": "",
             "content": "",
-            "media_link": ""
+            "media_link": "",
+            "like_id": {""}
         },
         {
             "id": "post-uuid",
             "user_id": "",
             "datetime": "",
             "content": "",
-            "media_link": ""
+            "media_link": "",
+            "like_id": {""}
         }
     ]
 }
@@ -206,14 +214,16 @@
             "user_id": "1236789",
             "datetime": "",
             "content": "",
-            "media_link": ""
+            "media_link": "",
+            "like_id": {""}
         },
         {
             "id": "post-id",
             "user_id": "1236789",
             "datetime": "",
             "content": "",
-            "media_link": ""
+            "media_link": "",
+            "like_id": {""}
         }
     ]
 }
