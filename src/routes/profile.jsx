@@ -2,11 +2,11 @@ import React from 'react';
 import '../App.css';
 
 // Muss noch importiert werden in Main.jsx
-const ProfileSite = () => {
+const profile = () => {
     const profileData = {
-        name: 'John Doe',
-        age: 25,
-        course: 'Web Development',
+        name: 'Test User',
+        age: 22,
+        course: 'AWS2302',
         profileImage: 'path/to/profile-image.jpg',
         posts: [
             'Post 1',
@@ -32,4 +32,4 @@ const ProfileSite = () => {
     );
 };
 
-export default ProfileSite;
+export default profile;
